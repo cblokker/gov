@@ -1,3 +1,14 @@
+<%= form_tag legislations_path, method: 'post' do %>
+  <%= select_tag :agency_name, options_for_select([
+      "Sort by Agency",
+      "Nuclear Regulatory Commission",
+      "Agriculture Department"
+    ],
+    "Sort by Agency")
+  %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <div id="frame">
     <ul class="slidee">
       <% @legislations.each do |legislation| %>
@@ -7,6 +18,9 @@
           <p>legislation: <%= legislation.type %></p>
           <p>publication date: <%= legislation.publication_date %></p>
           <p>proposal date: <%= legislation.proposal_date %></p>
+          <p>congress_voting_date: <%= legislation.congress_voting_date %></p>
+          <p>senate_voting_date: <%= legislation.senate_voting_date %></p>
+          <p>president_signing_date: <%= legislation.president_signing_date %></p>
           <%= link_to 'Articles', legislation_path(legislation) %>
         </li>
       <% end %>

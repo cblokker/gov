@@ -4,6 +4,9 @@ class LegislationsController < ApplicationController
     @legislations = Legislation.all
   end
 
+  def index_by_agency
+  end
+
   def show
     @legislation = Legislation.find(params[:id])
   end
@@ -13,17 +16,19 @@ class LegislationsController < ApplicationController
   end
 
   def create
-    @legislation = Legislation.new(legislation_params)
+    # @legislation = Legislation.where()
 
-    respond_to do |format|
-      if @legislation.save
-        format.html { redirect_to @legislation, notice: 'Legislation was successfully created.' }
-        format.json { render :show, status: :created, location: @legislation }
-      else
-        format.html { render :new }
-        format.json { render json: @legislation.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to root_url
+
+    # respond_to do |format|
+    #   if @legislation.save
+    #     format.html { redirect_to @legislation, notice: 'Legislation was successfully created.' }
+    #     format.json { render :show, status: :created, location: @legislation }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @legislation.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   private
