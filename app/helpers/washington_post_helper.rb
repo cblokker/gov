@@ -1,3 +1,4 @@
 module WashingtonPostHelper
-	# class << self
+	class << self
+	end
 end

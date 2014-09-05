@@ -1,7 +1,11 @@
 <% @legislation.articles.each do |article| %>
+
   <p><%= article.title %></p>
   <p><%= article.first_paragraph %></p>
   <p><%= article.publication_date %></p>
   <p><%= article.url %></p>
   <p><%= article.source %></p>
+
+  <p><%= link_to article.title, article.url %></p>
+
 <% end %>
