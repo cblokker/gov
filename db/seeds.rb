@@ -1,9 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # result_set = FederalRegister::Article.search(:conditions => {:term => "Accessibility"}).take(50)
@@ -11,6 +5,7 @@
 # result_set.each do |doc|
 # 	Fedreg.create(type_of_doc: doc.type, title: doc.title, abstract: doc.abstract, pub_date: doc.publication_date)
 # end
+
 LegislationsHelper.search_by_date_fedreg('2014-06-01')['results'].each do |result|
 	Legislation.create(
 	  title: result['title'],
@@ -19,6 +14,7 @@ LegislationsHelper.search_by_date_fedreg('2014-06-01')['results'].each do |resul
     url: result['html_url']
   )
 end
+
 
 LegislationsHelper.search_by_date_govtrack('2011-01-05')['objects'].each do |object|
 	Legislation.create(
@@ -32,7 +28,7 @@ end
 # keywords_to_fetch = Legistation.take(10)
 
 Legislation.all.each do |leg|
-	NytimesHelper.query_by_keywords(leg.title)['response']['docs'].each do |article|
+	NytimesHelper.query_by_keywords(NytimesHelper.remove_stops(leg))['response']['docs'].each do |article|
 		a = Article.create(
 			title: article['headline']['main'],
 			first_paragraph: article['lead_paragraph'],

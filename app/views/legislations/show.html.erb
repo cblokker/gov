@@ -1,11 +1,10 @@
-<% @legislation.articles.each do |article| %>
+<div id="container">
+	<h2><%= link_to @legislation.title, @legislation.url %></h2>
+	<h4>Relevant Articles:</h4>
+	<% @legislation.articles.each do |article| %>
+	  <p><i class="fa fa-newspaper-o"></i> <%= link_to article.title, article.url %></p>
+	<% end %>
 
-  <p><%= article.title %></p>
-  <p><%= article.first_paragraph %></p>
-  <p><%= article.publication_date %></p>
-  <p><%= article.url %></p>
-  <p><%= article.source %></p>
+	<h4>Relevant Tweets:</h4>
+</div>
 
-  <p><%= link_to article.title, article.url %></p>
-
-<% end %>
